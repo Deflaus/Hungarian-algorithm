@@ -19,7 +19,7 @@ class DataBaseAccess():
             cur.close()
             con.close()
         except:
-            print("Данные введены неверно!")
+            pass
 
     @staticmethod
     def delete_task(id):
@@ -33,7 +33,21 @@ class DataBaseAccess():
             cur.close()
             con.close()
         except:
-            print("Данные введены неверно!")
+            pass
+
+    @staticmethod
+    def update_task(id, task):
+        try:
+            con = sqlite3.connect('ss.db')
+            cur = con.cursor()
+
+            cur.execute('UPDATE tasks SET Task = "' + task + '" WHERE ID = "' + str(id) + '" ')
+            con.commit()
+
+            cur.close()
+            con.close()
+        except:
+            pass
 
     @staticmethod
     def parse_alldata_tasks():
@@ -50,7 +64,7 @@ class DataBaseAccess():
 
             return data
         except:
-            print("Error!!!")
+            pass
 
     @staticmethod
     def count_of_tasks():
@@ -65,7 +79,7 @@ class DataBaseAccess():
             con.close()
             return data[0][0]
         except:
-            print("Error!!!")
+            pass
 
     @staticmethod
     def get_names_of_tasks():
@@ -95,7 +109,7 @@ class DataBaseAccess():
             cur.close()
             con.close()
         except:
-            print("Данные введены неверно!")
+            pass
 
     @staticmethod
     def delete_worker(id):
@@ -111,7 +125,21 @@ class DataBaseAccess():
             cur.close()
             con.close()
         except:
-            print("Данные введены неверно!")
+            pass
+
+    @staticmethod
+    def update_worker(id, name, position):
+        try:
+            con = sqlite3.connect('ss.db')
+            cur = con.cursor()
+
+            cur.execute('UPDATE workers SET Name = "' + name + '", Position = "' + position + '" WHERE ID = "' + str(id) + '" ')
+            con.commit()
+
+            cur.close()
+            con.close()
+        except:
+            pass
 
     @staticmethod
     def parse_alldata_workers():
@@ -128,7 +156,7 @@ class DataBaseAccess():
 
             return data
         except:
-            print("Error!!!")
+            pass
 
     @staticmethod
     def count_of_workers():
@@ -143,7 +171,7 @@ class DataBaseAccess():
             con.close()
             return data[0][0]
         except:
-            print("Error!!!")
+            pass
 
     @staticmethod
     def get_names_of_workers():
@@ -176,7 +204,7 @@ class DataBaseAccess():
 
             return data
         except:
-            print("Error!!!")
+            pass
 
     @staticmethod
     def parse_data_time(id):
@@ -193,7 +221,7 @@ class DataBaseAccess():
 
             return data
         except:
-            print("Error!!!")
+            pass
 
     @staticmethod
     def get_time():
@@ -233,5 +261,5 @@ class DataBaseAccess():
             cur.close()
             con.close()
         except:
-            print("Errorrrr!!!")
+            pass
 

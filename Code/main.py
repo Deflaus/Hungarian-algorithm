@@ -4,7 +4,7 @@ from PyQt5.QtCore import Qt
 import sys
 from munkres import Munkres
 from sqll import DataBaseAccess
-from tables import Table_1, Table_2, InputW, InputT
+from tables import Table_1, Table_2, InputW, InputT, UpdateW, UpdateT
 
 
 class FormActions():
@@ -87,6 +87,26 @@ class FormActions():
         FormInT.close()
 
     @staticmethod
+    def btnUpdateTask():
+        FormUpdT.show()
+
+    @staticmethod
+    def btnOkUpdateTaskClicked():
+        DataBaseAccess.update_task(updT.lineEdit.text(), updT.lineEdit_2.text())
+        FormActions.PrintTableTask()
+        FormUpdT.close()
+
+    @staticmethod
+    def btnUpdateWorker():
+        FormUpdW.show()
+
+    @staticmethod
+    def btnOkUpdateWorkerClicked():
+        DataBaseAccess.update_worker(updW.lineEdit.text(), updW.lineEdit_2.text(), updW.lineEdit_3.text())
+        FormActions.PrintTableWork()
+        FormUpdW.close()
+
+    @staticmethod
     def ExportItemTable():
         FormActions.PrintMainTable()
         rows = DataBaseAccess.count_of_workers()
@@ -135,12 +155,16 @@ if __name__ == '__main__':
     FormT = QtWidgets.QWidget()
     FormInW = QtWidgets.QWidget()
     FormInT = QtWidgets.QWidget()
+    FormUpdW = QtWidgets.QWidget()
+    FormUpdT = QtWidgets.QWidget()
 
     table1 = Table_1()
     tableWork = Table_2()
     tableTask = Table_2()
     inpW = InputW()
     inpT = InputT()
+    updW = UpdateW()
+    updT = UpdateT()
 
     table1.setupUi(Form)
     table1.pushButton_2.clicked.connect(FormActions.StartTableTask)
@@ -151,16 +175,24 @@ if __name__ == '__main__':
     tableWork.setupUi(FormW)
     tableWork.pushButton.clicked.connect(FormActions.btnAddWorker)
     tableWork.pushButton_2.clicked.connect(FormActions.btnDelWorker)
+    tableWork.pushButton_3.clicked.connect(FormActions.btnUpdateWorker)
 
     tableTask.setupUi(FormT)
     tableTask.pushButton.clicked.connect(FormActions.btnAddTask)
     tableTask.pushButton_2.clicked.connect(FormActions.btnDelTask)
+    tableTask.pushButton_3.clicked.connect(FormActions.btnUpdateTask)
 
     inpW.setupUi(FormInW)
     inpW.pushButton.clicked.connect(FormActions.btnOkWorkerClicked)
 
     inpT.setupUi(FormInT)
     inpT.pushButton.clicked.connect(FormActions.btnOkTaskClicked)
+
+    updW.setupUi(FormUpdW)
+    updW.pushButton.clicked.connect(FormActions.btnOkUpdateWorkerClicked)
+
+    updT.setupUi(FormUpdT)
+    updT.pushButton.clicked.connect(FormActions.btnOkUpdateTaskClicked)
 
     FormActions.StartMainTable()
 
