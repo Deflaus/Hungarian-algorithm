@@ -64,7 +64,7 @@ class DataBaseAccess():
 
             return data
         except:
-            pass
+            return []
 
     @staticmethod
     def count_of_tasks():
@@ -77,9 +77,10 @@ class DataBaseAccess():
 
             cur.close()
             con.close()
+
             return data[0][0]
         except:
-            pass
+            return 0
 
     @staticmethod
     def get_names_of_tasks():
@@ -156,7 +157,7 @@ class DataBaseAccess():
 
             return data
         except:
-            pass
+            return []
 
     @staticmethod
     def count_of_workers():
@@ -171,7 +172,7 @@ class DataBaseAccess():
             con.close()
             return data[0][0]
         except:
-            pass
+            return 0
 
     @staticmethod
     def get_names_of_workers():
