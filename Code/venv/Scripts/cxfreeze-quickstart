@@ -1,5 +1,0 @@
-#!C:\Users\Daniil\PycharmProjects\Diplom\venv\Scripts\python.exe
-from cx_Freeze.setupwriter import main
-
-main()
-
